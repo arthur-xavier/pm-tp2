@@ -1,4 +1,5 @@
 import java.lang.*;
+import java.lang.Character;
 
 public class Carta {
 	private char numero;
@@ -7,6 +8,28 @@ public class Carta {
 	Carta(char numero, String naipe) {
 		this.numero = numero;
 		this.naipe = naipe;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = Character.getNumericValue(this.naipe.charAt(0))*1000;
+		result += Character.getNumericValue(this.numero);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (!(o instanceof Carta)) {
+			return false;
+		}
+
+		Carta carta = (Carta) o;
+		return carta.getNaipe().equals(this.naipe) 
+			&& carta.getNumero() == this.numero;
 	}
 
 	public void setNumero(char numero) {
