@@ -45,9 +45,6 @@ public class BaralhoDeTruco extends Baralho {
 		}
 	}
 
-
-
-
 	private BaralhoDeTruco() {
 		this.inicializarCartas();
 		this.inicializarValores();

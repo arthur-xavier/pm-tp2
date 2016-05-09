@@ -1,15 +1,17 @@
 import java.util.*;
 
-public class Rodada {
+public class Rodada extends Observable {
 	private Hashtable<Jogador, Carta> cartasNaMesa;
 	private Jogador pedidorDeTruco;
 	// Lista de jogadores de uma determinada equipe que aceitam o truco
 	private ArrayList<Jogador> aceitadorDeTruco;
 	// Lista de jogadores que correm do truco
 	private ArrayList<Jogador> corredorDeTruco;
+	private Mao m;
 
-	Rodada() {
+	Rodada(Mao m) {
 		this.cartasNaMesa = new Hashtable<Jogador, Carta>();
+		this.m = m;
 	}
 
 	public void jogar(Jogador j, Carta c) {
@@ -76,7 +78,7 @@ public class Rodada {
 		}
 
 		if (this.aceitadorDeTruco.size() > this.corredorDeTruco.size()) {
-			// notificar observer em Mão de incremento de +2 no tento
+			this.m.incrementarTento();	
 		}
 		this.aceitadorDeTruco = null;
 		this.corredorDeTruco = null;
