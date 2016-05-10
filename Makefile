@@ -16,13 +16,5 @@ run:
 doc:
 	pdflatex -output-directory=doc doc/doc.tex
 	cp doc/doc.pdf Truco_ArthurXavier_JotaJunior.pdf
-
-# Testes
-test_%:
-	@echo "\n! Testando \"$@\""
-	java pm/truco/Main < test/$@/in.txt > test/$@/$@.log
-	diff test/$@/out.txt test/$@/$@.log
-
-test:
-
+	
 .PHONY: clean doc
