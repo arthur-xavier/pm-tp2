@@ -1,4 +1,4 @@
-import java.util.Hashtable;
+import java.util.*;
 
 public class BaralhoDeTruco extends Baralho {
 	private static BaralhoDeTruco instance = null;
@@ -7,9 +7,9 @@ public class BaralhoDeTruco extends Baralho {
 		"copas",
 		"espadas"};
 	
-	private char[] numerosValidos = {2, 3, 4, 5, 6, 7,
+	private char[] numerosValidos = {'2', '3', '4', '5', '6', '7',
 		'q', 'j', 'k', 'a'};
-
+	private Stack<Carta> cartas;
 	private Hashtable<Carta, Integer> valores;
 	
 	private int getValorManilha(Carta c) {
@@ -45,6 +45,26 @@ public class BaralhoDeTruco extends Baralho {
 		}
 	}
 
+	public ArrayList<Carta> retirarCartas(int n) {
+		ArrayList<Carta> retiradas = new ArrayList<Carta>();
+
+		for (int i = 0; i < n; i++) {
+			retiradas.add(this.cartas.pop());
+		}
+
+		return retiradas;
+	}
+
+	private void inicializarCartas() {
+		this.cartas = new Stack<Carta>();
+		for (int i = 0; i < this.numerosValidos.length; i++) {
+			for (int j = 0; j < this.naipesValidos.length; j++) {
+				this.cartas.push(new Carta(this.numerosValidos[i], this.naipesValidos[j]));
+			}
+		}
+
+		Collections.shuffle(this.cartas);		
+	}
 	private BaralhoDeTruco() {
 		this.inicializarCartas();
 		this.inicializarValores();

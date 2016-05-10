@@ -9,7 +9,6 @@ public class JogadorHumano extends Jogador {
 	}
 
 	public Carta escolherCarta() {
-		this.mostrarCartasNaMao();
 		System.out.println();
 		int escolhida = -1;
 		Scanner reader = new Scanner(System.in);
@@ -24,6 +23,7 @@ public class JogadorHumano extends Jogador {
 	}
 
 	public boolean definirSePedeTruco() {
+		this.mostrarCartasNaMao();
 		int pediraTruco = 0;
 		Scanner reader = new Scanner(System.in);
 
