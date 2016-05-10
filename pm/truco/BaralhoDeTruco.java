@@ -10,7 +10,7 @@ public class BaralhoDeTruco extends Baralho {
 		"espadas"};
 
 	private char[] numerosValidos = {'2', '3', '4', '5', '6', '7',
-		'q', 'j', 'k', 'a'};
+		'Q', 'J', 'K', 'A'};
 	private Stack<Carta> cartas;
 	private Hashtable<Carta, Integer> valores;
 
