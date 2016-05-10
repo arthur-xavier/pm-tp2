@@ -49,6 +49,6 @@ public class Carta {
 	}
 
 	public String toString() {
-		return String.valueOf(this.numero).toUpperCase() + " de " + this.naipe;
+		return this.numero + " de " + this.naipe;
 	}
 }

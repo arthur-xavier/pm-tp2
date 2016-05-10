@@ -28,39 +28,5 @@ public abstract class Baralho {
 		return this.numerosValidos;
 	}
 
-	protected void inicializarCartas() {
-		String[] naipes;
-		if (this.naipesValidos == null) {
-			System.out.println("TODOS OS NAIPES CONSIDERADOS");
-			naipes = todosNaipes;
-		} else {
-			naipes = naipesValidos;
-		}
 
-		char[] numeros;
-		if (this.numerosValidos == null) {
-			System.out.println("TODOS OS NUMEROS CONSIDERADOS");
-			numeros = todosNumeros;
-		} else {
-			numeros = numerosValidos;
-		}
-
-		for (int i = 0; i < numeros.length; i++) {
-			for (int j = 0; j < naipes.length; j++) {
-				this.cartas.push(new Carta(numeros[i], naipes[j]));
-			}
-		}
-
-		Collections.shuffle(this.cartas);		
-	}
-
-	public ArrayList<Carta> retirarCartas(int n) {
-		ArrayList<Carta> retiradas = new ArrayList<Carta>();
-
-		for (int i = 0; i < n; i++) {
-			retiradas.add(this.cartas.pop());
-		}
-
-		return retiradas;
-	}
 }

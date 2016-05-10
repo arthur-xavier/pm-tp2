@@ -39,6 +39,7 @@ public class Mao {
 		if (j.definirSePedeTruco()) {
 			r.receberRequisicaoDeTruco(j);
 			if (this.definirAceite(r, equipe, jogadorPorEquipe)) {
+				System.out.println("Truco foi aceito!");
 				this.incrementarTento();
 			}
 		}

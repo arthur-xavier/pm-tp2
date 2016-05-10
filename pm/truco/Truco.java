@@ -8,6 +8,8 @@ public class Truco {
 	private Jogador[][] jogadorPorEquipe;
 
 	Truco() {
+		this.jogadores = new ArrayList<Jogador>();
+		this.maos = new ArrayList<Mao>();
 		this.baralho = BaralhoDeTruco.getInstance();
 	}
 
@@ -63,9 +65,10 @@ public class Truco {
 		}
 		
 		if (this.pontos[0] >= 12) {
+			System.out.println("A equipe 1 ganhou!");
 			return 1;
 		}
-
+		System.out.println("A equipe 2 ganhou!");
 		return 2;
 	}
 }
