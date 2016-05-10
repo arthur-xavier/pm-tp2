@@ -16,7 +16,7 @@ run:
 # Documentação
 doc:
 	pdflatex -output-directory=doc doc/doc.tex
-	cp doc/doc.pdf Estacionamento_ArthurXavier_JotaJunior.pdf
+	cp doc/doc.pdf Truco_ArthurXavier_JotaJunior.pdf
 
 # Testes
 test_%:

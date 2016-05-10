@@ -38,6 +38,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introdução}
 
+O jogo de Truco é um dos jogos de cartas mais jogados no Brasil na atualidade, especialmente entre os mais jovens e universitários. Este trabalho busca, através dos conceitos aprendidos em sala de aula, implementar um jogo de truco funcional para a fixação e práticas destes conceitos.
+
+\subsection{Regras do jogo}
+O jogo de Truco é bastante simples, apesar de possuir muitas regras em comparação com outros jogos também populares. Uma partida é jogada por duas equipes, formadas cada uma por um ou dois jogadores. No caso deste trabalho optamos por simplificar a implementação, utilizando apenas equipes de um jogador. Desta forma a \textbf{partida} é jogada por dois jogadores que buscam atingir \textbf{12 pontos} (chamados também \emph{tentos}) para vencer.
+
+\subsubsection{A partida}
+Uma partida é jogada em várias \textbf{mãos}. Em uma mão, cada jogador recebe 3 cartas de um baralho constituído pelos cartas de 1 a 7, a dama (no valor de 8), o valete (no valor de 9) e o rei (no valor de 10). Uma mão é jogada em 3 \textbf{rodadas}. O jogador que jogar a carta de valor mais alto vence a rodada. E a equipe que vencer duas rodadas vence a mão. Se todas as rodadas empatarem, nenhuma das equipes ganha ponto e uma nova mão se inicia. Uma partida é jogada em quantas mãos forem necessárias para que um jogador vença.
+
+\subsubsection{Pontuação}
+Inicialmente, o vencedor de uma mão ganha 2 tentos. O jogo conta, porém, com um sistema de apostas por mão. Estas apostas são chamadas \textbf{trucos}. Na sua vez de jogar durante uma rodada, um jogador pode fazer uma aposta, isto é, \emph{pedir truco}. Caso isto aconteça, a equipe adversária deve decidir se vai aceitar, fugir ou \emph{pedir 6}. Se eles aceitarem, a mão passa a valer 4 e continua normalmente. Se não aceitarem, a equipe que pediu o truco vence a mão e ganha seus pontos (dois). Se a equipe adversária \emph{pedir 6}, a equipe que pediu o truco deve decidir se vai aceitar, fugir ou \emph{pedir 10}, e assim por diante. Um jogador só pode aumentar o valor da aposta na seguinte ordem: 4, 6, 10 e 12. Por exemplo, ele não pode pedir 10 se o jogo está valendo 4 nem pedir 6 se o jogo vale 2. Uma equipe não pode pedir truco duas vezes seguidas. Quando uma equipe fugir, a outra equipe leva a mão e o valor atual dela em pontos.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Implementação
@@ -61,6 +72,6 @@
 % BIBLIOGRAFIA
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bibliografia}
-
+http://www.megajogos.com.br/jogosonline/truco-mineiro/regras
 
 \end{document}
