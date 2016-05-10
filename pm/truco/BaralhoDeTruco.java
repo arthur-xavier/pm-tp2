@@ -13,20 +13,20 @@ public class BaralhoDeTruco implements Baralho {
   }
 
   public String[] getNaipesValidos() {
-    return new String[]{"paus", "ouros", "copas", "espadas"};
+    return new String[]{"♠", "♦", "♥", "♣"};
   }
   public char[] getNumerosValidos() {
     return new char[]{'2', '3', '4', '5', '6', '7', 'Q', 'J', 'K', 'A'};
   }
 
 	private int getValorManilha(Carta c) {
-		if (c.getNumero() == '4' && c.getNaipe().equals("paus")) {
+		if (c.getNumero() == '4' && c.getNaipe().equals("♣")) {
 			return 13;
-		} else if (c.getNumero() == '7' && c.getNaipe().equals("copas")) {
+		} else if (c.getNumero() == '7' && c.getNaipe().equals("♥")) {
 			return 12;
-		} else if (c.getNumero() == 'a' && c.getNaipe().equals("espadas")) {
+		} else if (c.getNumero() == 'a' && c.getNaipe().equals("♠")) {
 			return 11;
-		} else if (c.getNumero() == '7' && c.getNaipe().equals("ouros")) {
+		} else if (c.getNumero() == '7' && c.getNaipe().equals("♦")) {
 			return 10;
 		}
 		return -1;

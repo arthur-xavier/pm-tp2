@@ -51,6 +51,6 @@ public class Carta {
 	}
 
 	public String toString() {
-		return this.numero + " de " + this.naipe;
+		return this.numero + this.naipe;
 	}
 }
