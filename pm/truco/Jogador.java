@@ -8,6 +8,11 @@ public abstract class Jogador {
 	protected ArrayList<Carta> cartasNaMao;
 	protected Hashtable<Jogador, Carta> cartasNaMesa;
 
+  public enum TipoJogador {
+    HUMANO,
+    RANDOMICO
+  }
+
 	public void setCartasNaMesa(Hashtable<Jogador, Carta> cartasNaMesa) {
 		this.cartasNaMesa = cartasNaMesa;
 	}
