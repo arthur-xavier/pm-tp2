@@ -26,9 +26,9 @@ public class Mao {
 
 		for (Jogador j: jogadorPorEquipe[outraEquipe-1]) {
 			if (j.definirSeAceitaTruco()) {
-				j.aceitar(r);
+				r.aceitarRequisicaoDeTruco(j);
 			} else {
-				j.correr(r);
+				r.negarRequisicaoDeTruco(j);
 			}
 		}
 
@@ -37,13 +37,12 @@ public class Mao {
 
 	private void executarInteracaoDeJogador(Jogador j, Rodada r, int equipe, Jogador[][] jogadorPorEquipe) {
 		if (j.definirSePedeTruco()) {
-			j.trucar(r);
+			r.receberRequisicaoDeTruco(j);
 			if (this.definirAceite(r, equipe, jogadorPorEquipe)) {
 				this.incrementarTento();
 			}
 		}
-
-		j.jogar(r);
+		r.adicionarCartaNaMesa(j, j.escolherCarta());
 	}
 
 	private void jogarRodada(Rodada r, Jogador[][] jogadorPorEquipe) {

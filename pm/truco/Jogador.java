@@ -54,21 +54,4 @@ public class Jogador {
 		float probabilidade = 0.5f;
 		return random.nextFloat() < probabilidade;
 	}
-
-	public void jogar(Rodada r) {
-		Carta c = this.escolherCarta();
-		r.adicionarCartaNaMesa(this, c);
-	}
-
-	public void trucar(Rodada r) {
-		r.receberRequisicaoDeTruco(this);
-	}
-
-	public void aceitar(Rodada r) {
-		r.aceitarRequisicaoDeTruco(this);
-	}
-
-	public void correr(Rodada r) {
-		r.negarRequisicaoDeTruco(this);
-	}
 }

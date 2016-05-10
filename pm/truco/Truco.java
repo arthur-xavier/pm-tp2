@@ -37,10 +37,35 @@ public class Truco {
 		return this.jogadores;
 	}
 
-	public void distribuirCartas() {
+	private void distribuirCartas() {
 		for (int i = 0; i < jogadores.size(); i++) {
 			ArrayList<Carta> cartas = this.baralho.retirarCartas(3);
 			jogadores.get(i).setCartasNaMao(cartas);
 		}
+	}
+
+	private boolean algumaEquipeGanhou() {
+		return this.pontos[0] >= 12 || this.pontos[1] >= 12;
+	}
+
+	public int jogar() {
+		this.separarJogadoresPorEquipe();
+
+		while (!this.algumaEquipeGanhou()) {
+			this.distribuirCartas();
+			Mao m = new Mao();
+			this.maos.add(m);
+			int equipeVencedora = m.jogar(this.jogadorPorEquipe);
+			
+			if (equipeVencedora != 0) {
+				this.pontos[equipeVencedora-1] += m.getTento();
+			}
+		}
+		
+		if (this.pontos[0] >= 12) {
+			return 1;
+		}
+
+		return 2;
 	}
 }
