@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Rodada extends Observable {
+public class Rodada {
 	private Hashtable<Jogador, Carta> cartasNaMesa;
 	private Jogador pedidorDeTruco;
 	// Lista de jogadores de uma determinada equipe que aceitam o truco
@@ -14,7 +14,7 @@ public class Rodada extends Observable {
 		this.m = m;
 	}
 
-	public void jogar(Jogador j, Carta c) {
+	public void adicionarCartaNaMesa(Jogador j, Carta c) {
 		this.cartasNaMesa.put(j, c);
 	}
 
@@ -50,13 +50,13 @@ public class Rodada extends Observable {
 		return maioresJogadores[equipeVencedora];
 	}
 
-	public void trucar(Jogador j) {
+	public void receberRequisicaoDeTruco(Jogador j) {
 		this.pedidorDeTruco = j;
 		this.aceitadorDeTruco = new ArrayList<Jogador>();
 		this.corredorDeTruco = new ArrayList<Jogador>();
 	}
 
-	public void aceitar(Jogador j) {
+	public void aceitarRequisicaoDeTruco(Jogador j) {
 		if (j.getEquipe() == this.pedidorDeTruco.getEquipe()) {
 			return;
 		}
@@ -64,7 +64,7 @@ public class Rodada extends Observable {
 		this.aceitadorDeTruco.add(j);
 	}
 
-	public void correr(Jogador j) {
+	public void negarRequisicaoDeTruco(Jogador j) {
 		if (j.getEquipe() == this.pedidorDeTruco.getEquipe()) {
 			return;
 		}

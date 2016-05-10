@@ -54,11 +54,11 @@ public abstract class Baralho {
 		Collections.shuffle(this.cartas);		
 	}
 
-	public Carta[] retirarCartas(int n) {
-		Carta[] retiradas = new Carta[n];
+	public ArrayList<Carta> retirarCartas(int n) {
+		ArrayList<Carta> retiradas = new ArrayList<Carta>();
 
 		for (int i = 0; i < n; i++) {
-			retiradas[i] = this.cartas.pop();
+			retiradas.add(this.cartas.pop());
 		}
 
 		return retiradas;

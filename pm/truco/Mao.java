@@ -14,6 +14,50 @@ public class Mao {
 		return this.rodadas.get(n);
 	}
 
+	// Define se o pedido de truco feito por um membro da equipe "equipe"
+	// na rodada R é aceito pelos adversários.
+	private void definirAceite(Rodada r, int equipe, Jogador[][] jogadorPorEquipe) {
+		int outraEquipe;
+		if (equipe == 1) {
+			outraEquipe = 2;
+		} else {
+			outraEquipe = 1;
+		}
+
+		for (Jogador j: jogadorPorEquipe[outraEquipe-1]) {
+			if (j.definirSeAceitaTruco()) {
+				j.aceitar(r);
+			} else {
+				j.correr(r);
+			}
+		}
+
+		r.definirAceite();
+	}
+
+	public Jogador jogarRodada(Rodada r, Jogador[][] jogadorPorEquipe) {
+		int nJogadores = jogadorPorEquipe[0].length;
+
+		for (int i = 0; i < nJogadores; i++) {
+			Jogador j1 = jogadorPorEquipe[0][i];
+			if (j1.definirSePedeTruco()) {
+				j1.trucar(r);
+				this.definirAceite(r, 1, jogadorPorEquipe);
+			}
+
+			j1.jogar(r);
+
+			Jogador j2 = jogadorPorEquipe[1][i];
+			if (j2.definirSePedeTruco()) {
+				j2.trucar(r);
+				this.definirAceite(r, 2, jogadorPorEquipe);
+			}
+
+			j2.jogar(r);
+		}
+
+		return r.getVencedor();
+	}
 	// Retorna o número da equipe que ganhou
 	// contando cada jogador que ganhou cada rodada.
 	// No caso de empate, a equipe que ganhou pela primeira vez na
@@ -21,7 +65,7 @@ public class Mao {
 	// nenhuma das equipes leva os pontos.
 	public int getEquipeVencedora() {
 		ArrayList<Jogador> vencedores = new ArrayList<Jogador>();
-		int vitoriasEquipes = {0, 0};
+		int[] vitoriasEquipes = {0, 0};
 		int primeiraEquipeAGanhar = -1;
 
 		for (int i = 0; i < 3; i++) {
@@ -45,7 +89,7 @@ public class Mao {
 			return 0;
 		}
 
-		return equipe;
+		return primeiraEquipeAGanhar;
 
 	}
 
