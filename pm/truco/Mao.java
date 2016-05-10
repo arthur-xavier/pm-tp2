@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Mao {
 	private int tento = 2;
-	private ArrayList<Rodada> rodadas = new ArrayList<Rodada>();
-	private ArrayList<Jogador> vencedores;
+	private List<Rodada> rodadas = new ArrayList<Rodada>();
+	private List<Jogador> vencedores;
 
 	Mao() {
 		for (int i = 0; i < 3; i++) {

@@ -6,9 +6,9 @@ public class Rodada {
 	private Hashtable<Jogador, Carta> cartasNaMesa;
 	private Jogador pedidorDeTruco;
 	// Lista de jogadores de uma determinada equipe que aceitam o truco
-	private ArrayList<Jogador> aceitadorDeTruco;
+	private List<Jogador> aceitadorDeTruco;
 	// Lista de jogadores que correm do truco
-	private ArrayList<Jogador> corredorDeTruco;
+	private List<Jogador> corredorDeTruco;
 
 	Rodada() {
 		this.cartasNaMesa = new Hashtable<Jogador, Carta>();

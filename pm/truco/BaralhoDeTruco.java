@@ -2,17 +2,22 @@ package pm.truco;
 
 import java.util.*;
 
-public class BaralhoDeTruco extends Baralho {
+public class BaralhoDeTruco implements Baralho {
 	private static BaralhoDeTruco instance = null;
-	private String[] naipesValidos = {"paus",
-		"ouros",
-		"copas",
-		"espadas"};
 
-	private char[] numerosValidos = {'2', '3', '4', '5', '6', '7',
-		'Q', 'J', 'K', 'A'};
 	private Stack<Carta> cartas;
 	private Hashtable<Carta, Integer> valores;
+
+  public Stack<Carta> getCartas() {
+    return cartas;
+  }
+
+  public String[] getNaipesValidos() {
+    return new String[]{"paus", "ouros", "copas", "espadas"};
+  }
+  public char[] getNumerosValidos() {
+    return new char[]{'2', '3', '4', '5', '6', '7', 'Q', 'J', 'K', 'A'};
+  }
 
 	private int getValorManilha(Carta c) {
 		if (c.getNumero() == '4' && c.getNaipe().equals("paus")) {
@@ -29,7 +34,7 @@ public class BaralhoDeTruco extends Baralho {
 
 	private void inicializarValores() {
 		this.valores = new Hashtable<Carta, Integer>();
-		char[] ordem = {'4', '5', '6', '7', 'q', 'j', 'k', 'a', '2', '3'};
+		char[] ordem = {'4', '5', '6', '7', 'Q', 'J', 'K', 'A', '2', '3'};
 
 		for (Carta c: this.cartas) {
 			int valorManilha = this.getValorManilha(c);
@@ -47,8 +52,8 @@ public class BaralhoDeTruco extends Baralho {
 		}
 	}
 
-	public ArrayList<Carta> retirarCartas(int n) {
-		ArrayList<Carta> retiradas = new ArrayList<Carta>();
+	public List<Carta> retirarCartas(int n) {
+		List<Carta> retiradas = new ArrayList<Carta>();
 
 		for (int i = 0; i < n; i++) {
 			retiradas.add(this.cartas.pop());
@@ -59,14 +64,19 @@ public class BaralhoDeTruco extends Baralho {
 
 	private void inicializarCartas() {
 		this.cartas = new Stack<Carta>();
-		for (int i = 0; i < this.numerosValidos.length; i++) {
-			for (int j = 0; j < this.naipesValidos.length; j++) {
-				this.cartas.push(new Carta(this.numerosValidos[i], this.naipesValidos[j]));
+
+    String[] naipesValidos = getNaipesValidos();
+    char[] numerosValidos = getNumerosValidos();
+
+		for (int i = 0; i < numerosValidos.length; i++) {
+			for (int j = 0; j < naipesValidos.length; j++) {
+				this.cartas.push(new Carta(numerosValidos[i], naipesValidos[j]));
 			}
 		}
 
 		Collections.shuffle(this.cartas);
 	}
+
 	private BaralhoDeTruco() {
 		this.inicializarCartas();
 		this.inicializarValores();

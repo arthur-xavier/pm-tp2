@@ -4,9 +4,9 @@ import java.util.*;
 
 public class Truco {
 	private int[] pontos = {0, 0};
-	private ArrayList<Jogador> jogadores;
-	private ArrayList<Mao> maos;
-	private BaralhoDeTruco baralho;
+	private List<Jogador> jogadores;
+	private List<Mao> maos;
+	private Baralho baralho;
 	private Jogador[][] jogadorPorEquipe;
 
 	Truco() {
@@ -37,13 +37,13 @@ public class Truco {
 		this.jogadores.add(j);
 	}
 
-	public ArrayList<Jogador> getJogadores() {
+	public List<Jogador> getJogadores() {
 		return this.jogadores;
 	}
 
 	private void distribuirCartas() {
 		for (int i = 0; i < jogadores.size(); i++) {
-			ArrayList<Carta> cartas = this.baralho.retirarCartas(3);
+			List<Carta> cartas = this.baralho.retirarCartas(3);
 			jogadores.get(i).setCartasNaMao(cartas);
 		}
 	}

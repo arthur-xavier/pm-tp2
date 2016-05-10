@@ -5,7 +5,7 @@ import java.util.*;
 public abstract class Jogador {
 	private String nome;
 	private int equipe;
-	protected ArrayList<Carta> cartasNaMao;
+	protected List<Carta> cartasNaMao;
 	protected Hashtable<Jogador, Carta> cartasNaMesa;
 
   public enum TipoJogador {
@@ -17,11 +17,11 @@ public abstract class Jogador {
 		this.cartasNaMesa = cartasNaMesa;
 	}
 
-	public void setCartasNaMao(ArrayList<Carta> cartas) {
+	public void setCartasNaMao(List<Carta> cartas) {
 		this.cartasNaMao = cartas;
 	}
 
-	public ArrayList<Carta> getCartasNaMao() {
+	public List<Carta> getCartasNaMao() {
 		return this.cartasNaMao;
 	}
 
