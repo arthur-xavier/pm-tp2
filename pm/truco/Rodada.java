@@ -7,11 +7,9 @@ public class Rodada {
 	private ArrayList<Jogador> aceitadorDeTruco;
 	// Lista de jogadores que correm do truco
 	private ArrayList<Jogador> corredorDeTruco;
-	private Mao m;
 
-	Rodada(Mao m) {
+	Rodada() {
 		this.cartasNaMesa = new Hashtable<Jogador, Carta>();
-		this.m = m;
 	}
 
 	public void adicionarCartaNaMesa(Jogador j, Carta c) {
@@ -72,17 +70,20 @@ public class Rodada {
 		this.corredorDeTruco.add(j);
 	}
 
-	public void definirAceite() {
+	public boolean definirAceite() {
 		if (this.pedidorDeTruco == null) {
-			return;
+			return false;
 		}
+		boolean resultado = false;
 
 		if (this.aceitadorDeTruco.size() > this.corredorDeTruco.size()) {
-			this.m.incrementarTento();	
+			resultado = true;
 		}
 		this.aceitadorDeTruco = null;
 		this.corredorDeTruco = null;
 		this.pedidorDeTruco = null;
+		
+		return resultado;
 	}
 
 }

@@ -6,7 +6,7 @@ public class Mao {
 
 	Mao() {
 		for (int i = 0; i < 3; i++) {
-			this.rodadas.add(new Rodada(this));
+			this.rodadas.add(new Rodada());
 		}
 	}
 
@@ -16,7 +16,7 @@ public class Mao {
 
 	// Define se o pedido de truco feito por um membro da equipe "equipe"
 	// na rodada R é aceito pelos adversários.
-	private void definirAceite(Rodada r, int equipe, Jogador[][] jogadorPorEquipe) {
+	private boolean definirAceite(Rodada r, int equipe, Jogador[][] jogadorPorEquipe) {
 		int outraEquipe;
 		if (equipe == 1) {
 			outraEquipe = 2;
@@ -32,38 +32,46 @@ public class Mao {
 			}
 		}
 
-		r.definirAceite();
+		return r.definirAceite();
 	}
 
-	public Jogador jogarRodada(Rodada r, Jogador[][] jogadorPorEquipe) {
+	private void executarInteracaoDeJogador(Jogador j, Rodada r, int equipe, Jogador[][] jogadorPorEquipe) {
+		if (j.definirSePedeTruco()) {
+			j.trucar(r);
+			if (this.definirAceite(r, equipe, jogadorPorEquipe)) {
+				this.incrementarTento();
+			}
+		}
+
+		j.jogar(r);
+	}
+
+	private void jogarRodada(Rodada r, Jogador[][] jogadorPorEquipe) {
 		int nJogadores = jogadorPorEquipe[0].length;
 
 		for (int i = 0; i < nJogadores; i++) {
 			Jogador j1 = jogadorPorEquipe[0][i];
-			if (j1.definirSePedeTruco()) {
-				j1.trucar(r);
-				this.definirAceite(r, 1, jogadorPorEquipe);
-			}
-
-			j1.jogar(r);
+			this.executarInteracaoDeJogador(j1, r, 1, jogadorPorEquipe);
 
 			Jogador j2 = jogadorPorEquipe[1][i];
-			if (j2.definirSePedeTruco()) {
-				j2.trucar(r);
-				this.definirAceite(r, 2, jogadorPorEquipe);
-			}
+			this.executarInteracaoDeJogador(j2, r, 2, jogadorPorEquipe);
+		}
+	}
 
-			j2.jogar(r);
+	public int jogar(Jogador[][] jogadorPorEquipe) {
+		for(Rodada r: this.rodadas) {
+			this.jogarRodada(r, jogadorPorEquipe);
 		}
 
-		return r.getVencedor();
+		return this.getEquipeVencedora();
 	}
+
 	// Retorna o número da equipe que ganhou
 	// contando cada jogador que ganhou cada rodada.
 	// No caso de empate, a equipe que ganhou pela primeira vez na
 	// mão leva. Se todas empatarem, retorna 0, que quer dizer que
 	// nenhuma das equipes leva os pontos.
-	public int getEquipeVencedora() {
+	private int getEquipeVencedora() {
 		ArrayList<Jogador> vencedores = new ArrayList<Jogador>();
 		int[] vitoriasEquipes = {0, 0};
 		int primeiraEquipeAGanhar = -1;
