@@ -1,3 +1,5 @@
+package pm.truco;
+
 import java.lang.*;
 import java.lang.Character;
 
@@ -28,14 +30,14 @@ public class Carta {
 		}
 
 		Carta carta = (Carta) o;
-		return carta.getNaipe().equals(this.naipe) 
+		return carta.getNaipe().equals(this.naipe)
 			&& carta.getNumero() == this.numero;
 	}
 
 	public void setNumero(char numero) {
 		this.numero = Character.toLowerCase(numero);
 	}
-	
+
 	public void setNaipe(String naipe) {
 		this.naipe = naipe.toLowerCase();
 	}

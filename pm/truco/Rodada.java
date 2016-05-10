@@ -1,3 +1,5 @@
+package pm.truco;
+
 import java.util.*;
 
 public class Rodada {
@@ -25,13 +27,13 @@ public class Rodada {
 
 		for (Jogador j: keys) {
 			Carta c = this.cartasNaMesa.get(j);
-			int valor = bdt.getValorCarta(c); 
+			int valor = bdt.getValorCarta(c);
 			int equipe = j.getEquipe();
 			int i = equipe - 1;
 			if (valor > maioresValores[i]) {
 				maioresValores[i] = valor;
 				maioresJogadores[i] = j;
-			}	
+			}
 		}
 
 		// empate entre equipe 1 e 2
@@ -64,7 +66,7 @@ public class Rodada {
 		if (j.getEquipe() == this.pedidorDeTruco.getEquipe()) {
 			return;
 		}
-		
+
 		this.aceitadorDeTruco.add(j);
 	}
 
@@ -89,7 +91,7 @@ public class Rodada {
 		this.aceitadorDeTruco = null;
 		this.corredorDeTruco = null;
 		this.pedidorDeTruco = null;
-		
+
 		return resultado;
 	}
 

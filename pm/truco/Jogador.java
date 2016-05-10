@@ -1,3 +1,5 @@
+package pm.truco;
+
 import java.util.*;
 
 public abstract class Jogador {

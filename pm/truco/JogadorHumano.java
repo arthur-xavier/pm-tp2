@@ -1,3 +1,5 @@
+package pm.truco;
+
 import java.util.*;
 
 public class JogadorHumano extends Jogador {
@@ -45,5 +47,5 @@ public class JogadorHumano extends Jogador {
 		}
 
 		return aceitouTruco == 1;
-	}		
+	}
 }

@@ -1,3 +1,4 @@
+package pm.truco;
 
 public class Main {
 
@@ -19,7 +20,5 @@ public class Main {
 		t.adicionarJogador(comp);
 		t.adicionarJogador(vc);
 		t.jogar();
-		
-
 	}
 }

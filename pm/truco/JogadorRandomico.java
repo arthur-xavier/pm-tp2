@@ -1,3 +1,5 @@
+package pm.truco;
+
 import java.util.*;
 
 public class JogadorRandomico extends Jogador {
@@ -12,7 +14,7 @@ public class JogadorRandomico extends Jogador {
 
 	public boolean definirSePedeTruco() {
 		Random random = new Random();
-		float probabilidade = 0.2f;
+		float probabilidade = 0.1f;
 		return random.nextFloat() < probabilidade;
 	}
 

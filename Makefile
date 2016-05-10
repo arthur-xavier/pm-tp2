@@ -1,8 +1,7 @@
 all: build
 
 build:
-	javac pm/truco/**/*.java
-	javac pm/truco/*.java
+	javac pm/**/*.java
 
 clean:
 	rm -rf pm/truco/**/*.class

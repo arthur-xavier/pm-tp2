@@ -1,3 +1,5 @@
+package pm.truco;
+
 import java.util.*;
 
 public class BaralhoDeTruco extends Baralho {
@@ -6,12 +8,12 @@ public class BaralhoDeTruco extends Baralho {
 		"ouros",
 		"copas",
 		"espadas"};
-	
+
 	private char[] numerosValidos = {'2', '3', '4', '5', '6', '7',
 		'q', 'j', 'k', 'a'};
 	private Stack<Carta> cartas;
 	private Hashtable<Carta, Integer> valores;
-	
+
 	private int getValorManilha(Carta c) {
 		if (c.getNumero() == '4' && c.getNaipe().equals("paus")) {
 			return 13;
@@ -35,7 +37,7 @@ public class BaralhoDeTruco extends Baralho {
 				this.valores.put(c, valorManilha);
 				continue;
 			}
-			
+
 			for (int i = 0; i < ordem.length; i++) {
 				if (c.getNumero() == ordem[i]) {
 					this.valores.put(c, i);
@@ -63,7 +65,7 @@ public class BaralhoDeTruco extends Baralho {
 			}
 		}
 
-		Collections.shuffle(this.cartas);		
+		Collections.shuffle(this.cartas);
 	}
 	private BaralhoDeTruco() {
 		this.inicializarCartas();

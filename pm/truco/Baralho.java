@@ -1,3 +1,5 @@
+package pm.truco;
+
 import java.util.*;
 
 public abstract class Baralho {
@@ -9,9 +11,9 @@ public abstract class Baralho {
 		"copas",
 		"espadas"};
 
-	protected static final char[] todosNumeros = {2, 3, 4, 5, 
+	protected static final char[] todosNumeros = {2, 3, 4, 5,
 		6, 7, 8, 9, 'j', 'q', 'k', 'a'};
-	
+
 	public void setNaipesValidos(String[] naipesValidos) {
 		this.naipesValidos = naipesValidos;
 	}

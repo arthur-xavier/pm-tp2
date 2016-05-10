@@ -1,3 +1,5 @@
+package pm.truco;
+
 import java.util.*;
 
 public class Truco {
@@ -66,12 +68,12 @@ public class Truco {
 			Mao m = new Mao();
 			this.maos.add(m);
 			int equipeVencedora = m.jogar(this.jogadorPorEquipe);
-			
+
 			if (equipeVencedora != 0) {
 				this.pontos[equipeVencedora-1] += m.getTento();
 			}
 		}
-		
+
 		if (this.pontos[0] >= 12) {
 			System.out.println("****** A equipe 1 ganhou *******");
 			return 1;
