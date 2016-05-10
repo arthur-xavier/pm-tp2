@@ -3,6 +3,7 @@ import java.util.*;
 public class Mao {
 	private int tento = 2;
 	private ArrayList<Rodada> rodadas = new ArrayList<Rodada>();
+	private ArrayList<Jogador> vencedores;
 
 	Mao() {
 		for (int i = 0; i < 3; i++) {
@@ -59,8 +60,18 @@ public class Mao {
 	}
 
 	public int jogar(Jogador[][] jogadorPorEquipe) {
+		this.vencedores = new ArrayList<Jogador>();
+		int i = 1;
 		for(Rodada r: this.rodadas) {
+			System.out.println();
+			System.out.println("+--------------------------------------+");
+			System.out.println("|-------------- RODADA " + i++ + " --------------|");
+			System.out.println("+--------------------------------------|");
+			System.out.println("|           Valor do tento: " + this.tento + "          |");
+			System.out.println("+--------------------------------------+");
 			this.jogarRodada(r, jogadorPorEquipe);
+			this.vencedores.add(r.getVencedor());
+			System.out.println();
 		}
 
 		return this.getEquipeVencedora();
@@ -72,15 +83,13 @@ public class Mao {
 	// mão leva. Se todas empatarem, retorna 0, que quer dizer que
 	// nenhuma das equipes leva os pontos.
 	private int getEquipeVencedora() {
-		ArrayList<Jogador> vencedores = new ArrayList<Jogador>();
 		int[] vitoriasEquipes = {0, 0};
 		int primeiraEquipeAGanhar = -1;
 
 		for (int i = 0; i < 3; i++) {
-			vencedores.add(this.acessarRodada(i).getVencedor());
-			Jogador vencedor = vencedores.get(i);
+			Jogador vencedor = this.vencedores.get(i);
 			if (vencedor != null) {
-				int equipe = vencedores.get(i).getEquipe();
+				int equipe = this.vencedores.get(i).getEquipe();
 				vitoriasEquipes[equipe - 1] += 1;
 
 				if (primeiraEquipeAGanhar == -1) {
@@ -97,6 +106,8 @@ public class Mao {
 			return 0;
 		}
 
+		System.out.println();
+		System.out.println("****** Equipe " + primeiraEquipeAGanhar + " venceu esta mão! *******");
 		return primeiraEquipeAGanhar;
 
 	}

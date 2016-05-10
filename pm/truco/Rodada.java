@@ -13,7 +13,7 @@ public class Rodada {
 	}
 
 	public void adicionarCartaNaMesa(Jogador j, Carta c) {
-		System.out.println("Jogador " + j.getNome() + " jogou a carta " + c.toString() + " na mesa!");
+		System.out.println("--> Jogador " + j.getNome() + " jogou a carta " + c.toString() + " na mesa!");
 		this.cartasNaMesa.put(j, c);
 	}
 
@@ -36,6 +36,7 @@ public class Rodada {
 
 		// empate entre equipe 1 e 2
 		if (maioresValores[0] == maioresValores[1]) {
+			System.out.println("==== Ninguém venceu esta rodada ====");
 			return null;
 		}
 
@@ -47,19 +48,19 @@ public class Rodada {
 		}
 
 		Jogador vencedor = maioresJogadores[equipeVencedora];
-		System.out.println("Jogador " + vencedor.getNome() + " da equipe " + vencedor.getEquipe() + " venceu a rodada!");
+		System.out.println("*** Jogador " + vencedor.getNome() + " da equipe " + vencedor.getEquipe() + " venceu a rodada! ***");
 		return vencedor;
 	}
 
 	public void receberRequisicaoDeTruco(Jogador j) {
-		System.out.println("Opa!!! Jogador " + j.getNome() + " pediu truco!");
+		System.out.println("!!!! Jogador " + j.getNome() + " pediu truco !!!!");
 		this.pedidorDeTruco = j;
 		this.aceitadorDeTruco = new ArrayList<Jogador>();
 		this.corredorDeTruco = new ArrayList<Jogador>();
 	}
 
 	public void aceitarRequisicaoDeTruco(Jogador j) {
-		System.out.println("Jogador " + j.getNome() + " aceita o truco!!");
+		System.out.println("!!!! Jogador " + j.getNome() + " aceita o truco !!!!");
 		if (j.getEquipe() == this.pedidorDeTruco.getEquipe()) {
 			return;
 		}
@@ -68,7 +69,7 @@ public class Rodada {
 	}
 
 	public void negarRequisicaoDeTruco(Jogador j) {
-		System.out.println("Jogador " + j.getNome() + " correu do truco!");
+		System.out.println("!!!! Jogador " + j.getNome() + " correu do truco !!!!");
 		if (j.getEquipe() == this.pedidorDeTruco.getEquipe()) {
 			return;
 		}
