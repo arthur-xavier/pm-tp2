@@ -8,6 +8,11 @@ public class BaralhoDeTruco implements Baralho {
 	private Stack<Carta> cartas;
 	private Hashtable<Carta, Integer> valores;
 
+  public void embaralhar() {
+    this.inicializarCartas();
+    this.inicializarValores();
+  }
+
   public Stack<Carta> getCartas() {
     return cartas;
   }
@@ -78,8 +83,7 @@ public class BaralhoDeTruco implements Baralho {
 	}
 
 	private BaralhoDeTruco() {
-		this.inicializarCartas();
-		this.inicializarValores();
+		this.embaralhar();
 	}
 
 	public int getValorCarta(Carta c) {

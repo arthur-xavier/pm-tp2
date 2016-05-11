@@ -66,6 +66,7 @@ public class Partida {
 			System.out.println("|      Pontos da equipe 2: " + this.pontos[1] + "           |");
 			System.out.println("+--------------------------------------+");
 			System.out.println();
+      this.baralho.embaralhar();
 			this.distribuirCartas();
 			Mao m = new Mao();
 			this.maos.add(m);
