@@ -1,6 +1,7 @@
-package pm.truco;
+package pm.truco.partida;
 
 import java.util.*;
+import pm.truco.jogador.*;
 
 public class Mao {
 	private int tento = 2;

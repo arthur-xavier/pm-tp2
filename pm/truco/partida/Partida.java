@@ -1,15 +1,17 @@
-package pm.truco;
+package pm.truco.partida;
 
 import java.util.*;
+import pm.truco.baralho.*;
+import pm.truco.jogador.*;
 
-public class Truco {
+public class Partida {
 	private int[] pontos = {0, 0};
 	private List<Jogador> jogadores;
 	private List<Mao> maos;
 	private Baralho baralho;
 	private Jogador[][] jogadorPorEquipe;
 
-	Truco() {
+	Partida() {
 		this.jogadores = new ArrayList<Jogador>();
 		this.maos = new ArrayList<Mao>();
 		this.baralho = BaralhoDeTruco.getInstance();

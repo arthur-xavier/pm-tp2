@@ -1,6 +1,7 @@
-package pm.truco;
+package pm.truco.jogador;
 
 import java.util.*;
+import pm.truco.baralho.*;
 
 public class JogadorHumano extends Jogador {
 	private void mostrarCartasNaMao() {

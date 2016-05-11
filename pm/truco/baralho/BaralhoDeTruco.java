@@ -1,4 +1,4 @@
-package pm.truco;
+package pm.truco.baralho;
 
 import java.util.*;
 
@@ -24,7 +24,7 @@ public class BaralhoDeTruco implements Baralho {
 			return 13;
 		} else if (c.getNumero() == '7' && c.getNaipe().equals("♥")) {
 			return 12;
-		} else if (c.getNumero() == 'a' && c.getNaipe().equals("♠")) {
+		} else if (c.getNumero() == 'A' && c.getNaipe().equals("♠")) {
 			return 11;
 		} else if (c.getNumero() == '7' && c.getNaipe().equals("♦")) {
 			return 10;

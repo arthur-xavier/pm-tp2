@@ -1,6 +1,8 @@
-package pm.truco;
+package pm.truco.partida;
 
 import java.util.*;
+import pm.truco.baralho.*;
+import pm.truco.jogador.*;
 
 public class Rodada {
 	private Hashtable<Jogador, Carta> cartasNaMesa;

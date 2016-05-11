@@ -1,4 +1,4 @@
-package pm.truco;
+package pm.truco.baralho;
 
 import java.util.*;
 

@@ -1,7 +1,8 @@
 all: build
 
 build:
-	javac pm/**/*.java
+	javac pm/truco/**/*.java
+	javac pm/truco/*.java
 
 clean:
 	rm -rf pm/truco/**/*.class
@@ -16,5 +17,5 @@ run:
 doc:
 	pdflatex -output-directory=doc doc/doc.tex
 	cp doc/doc.pdf Truco_ArthurXavier_JotaJunior.pdf
-	
+
 .PHONY: clean doc

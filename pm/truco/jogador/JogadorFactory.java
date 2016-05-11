@@ -1,4 +1,4 @@
-package pm.truco;
+package pm.truco.jogador;
 
 public class JogadorFactory {
 

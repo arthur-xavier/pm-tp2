@@ -1,5 +1,7 @@
 package pm.truco;
 
+import pm.truco.partida.*;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -10,8 +12,8 @@ public class Main {
 		System.out.println("|Lembre-se: Você pertence à equipe 2!!|");
 		System.out.println("+-------------------------------------+");
 
-    TrucoBuilder builder = new TrucoBuilder();
-    Truco truco = builder.criarTrucoDoisJogadores();
-    truco.jogar();
+    PartidaBuilder builder = new PartidaBuilder();
+    Partida partida = builder.criarTrucoDoisJogadores();
+    partida.jogar();
 	}
 }
