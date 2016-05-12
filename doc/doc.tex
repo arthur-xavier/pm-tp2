@@ -6,24 +6,23 @@
 % math packages
 \usepackage{amsmath}
 \usepackage{amstext}
-
 \usepackage{url}
-
-\usepackage{multicol}
 \usepackage{graphicx}
 
+\setlength{\parskip}{0.9em}
+\renewcommand{\baselinestretch}{1.2}
+
 %
-\graphicspath{ {./img/} }
 \setlength{\parskip}{1.3ex plus 0.5ex minus 0.3ex}
 
 % HEADER
-\title{Trabalho Prático 1 - Truco}
+\title{Trabalho Prático 2 - Truco}
 \author{
     Arthur Xavier\\
     \texttt{xavier@dcc.ufmg.br}
     \and
     Jota Júnior\\
-    \texttt{}
+    \texttt{jota@dcc.ufmg.br}
 }
 \date{11 de Maio de 2016}
 
@@ -47,31 +46,67 @@ O jogo de Truco é bastante simples, apesar de possuir muitas regras em compara�
 Uma partida é jogada em várias \textbf{mãos}. Em uma mão, cada jogador recebe 3 cartas de um baralho constituído pelos cartas de 1 a 7, a dama (no valor de 8), o valete (no valor de 9) e o rei (no valor de 10). Uma mão é jogada em 3 \textbf{rodadas}. O jogador que jogar a carta de valor mais alto vence a rodada. E a equipe que vencer duas rodadas vence a mão. Se todas as rodadas empatarem, nenhuma das equipes ganha ponto e uma nova mão se inicia. Uma partida é jogada em quantas mãos forem necessárias para que um jogador vença.
 
 \subsubsection{Pontuação}
-Inicialmente, o vencedor de uma mão ganha 2 tentos. O jogo conta, porém, com um sistema de apostas por mão. Estas apostas são chamadas \textbf{trucos}. Na sua vez de jogar durante uma rodada, um jogador pode fazer uma aposta, isto é, \emph{pedir truco}. Caso isto aconteça, a equipe adversária deve decidir se vai aceitar, fugir ou \emph{pedir 6}. Se eles aceitarem, a mão passa a valer 4 e continua normalmente. Se não aceitarem, a equipe que pediu o truco vence a mão e ganha seus pontos (dois). Se a equipe adversária \emph{pedir 6}, a equipe que pediu o truco deve decidir se vai aceitar, fugir ou \emph{pedir 10}, e assim por diante. Um jogador só pode aumentar o valor da aposta na seguinte ordem: 4, 6, 10 e 12. Por exemplo, ele não pode pedir 10 se o jogo está valendo 4 nem pedir 6 se o jogo vale 2. Uma equipe não pode pedir truco duas vezes seguidas. Quando uma equipe fugir, a outra equipe leva a mão e o valor atual dela em pontos.
+Inicialmente, o vencedor de uma mão ganha 2 tentos. O jogo conta, porém, com um sistema de apostas por mão. Estas apostas são chamadas \textbf{trucos}. Na sua vez de jogar durante uma rodada, um jogador pode fazer uma aposta, isto é, \emph{pedir truco}. Caso isto aconteça, a equipe adversária deve decidir se vai aceitar, fugir ou \emph{pedir 6}. Se eles aceitarem, a mão passa a valer 4 e continua normalmente. Se não aceitarem, a equipe que pediu o truco vence a mão e ganha seus pontos (dois). Se a equipe adversária \emph{pedir 6}, a equipe que pediu o truco deve decidir se vai aceitar, fugir ou \emph{pedir 10}, e assim por diante.
 
+Um jogador só pode aumentar o valor da aposta na seguinte ordem: 4, 6, 10 e 12. Por exemplo, ele não pode pedir 10 se o jogo está valendo 4 nem pedir 6 se o jogo vale 2. Uma equipe não pode pedir truco duas vezes seguidas. Quando uma equipe fugir, a outra equipe leva a mão e o valor atual dela em pontos.
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Implementação
+% IMPLEMENTAÇÃO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implementação}
 
+A implementação do jogo foi feita de forma extensível. É possível com poucas alterações no código, adicionar mais jogadores nas equipes ou trocar o valor das cartas. Para simplificação o jogo foi implementado para dois jogadores: um humano e um que toma decisões aleatórias, controlado pela máquina.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TESTES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Testes}
+A classe principal do programa (\textbf{Main}), cuida da instanciação da partida, que é feita através da classe \textbf{PartidaBuilder}, a qual utiliza o padrão de projeto Builder. No jogo implementado, esta classe instancia um objeto do tipo \textbf{Partida} e os respectivos jogadores.
 
+A partida, assim como nos conceitos do jogo de truco, é composta por um conjunto de objetos do tipo \textbf{Jogador}, um conjunto de objetos do tipo \textbf{Mao}, e um \textbf{Baralho}. Uma mão, por sua vez, é composta por um conjunto de objetos do tipo \textbf{Rodada} e um conjunto de jogadores vencedores da rodada.
+
+A interface \textbf{Baralho} é implementada na classe \textbf{BaralhoDeTruco} que é um Singleton. Isto permite que exista apenas uma instância deste baralho durante toda a aplicação. O baralho é, então, refeito e embaralhado no início de cada mão.
+
+O pacote \textbf{pm.truco.jogador} contém classes relativas aos jogadores, dentre elas a classe abstrata genérica \textbf{Jogador}, a qual é extendida para a criação das classes \textbf{JogadorHumano}, que implementa o jogador humano, e \textbf{JogadorRandomico}, que implementa o jogador controlado pela máquina que toma decisões de forma aleatória. Objetos do tipo \textbf{Jogador} podem ser instanciados por tipo utilizando-se a classe \textbf{JogadorFactory} que implementa o padrão de projeto Factory.
+
+Por motivos de simplificação da implementação, as interações de entrada e saída foram feitas dentro das classes de representação do sistema, isto é, não foram implementadas classes próprias para entrada e saída.
+
+\subsection{Diagrama de classes}
+Segue abaixo o diagrama de classes do projeto, contendo todas as classes utilizadas, porém não separadas por pacote. Foram omitidos do diagrama os métodos \emph{get} e \emph{set} padrões.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{diagrama-de-classes.pdf}
+\end{figure}
+
+\newpage
+
+\subsection{Diagrama de atividades}
+Segue abaixo o diagrama de classes do projeto, contendo todas as classes utilizadas, porém não separadas por pacote.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{diagrama-de-atividade.pdf}
+\end{figure}
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONCLUSÃO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusão}
 
+Com a implementação do jogo de truco, pôde-se verificar a real utilidade dos padrões de projeto aprendidos em sala de aula na prática. A utilização destes padrões proveu não somente uma maior facilidade e segurança na implementação do programa como também agilidade, visto que boa parte destes padrões visa simplificar o trabalho do programador.
+
+Percebe-se também que, apesar de ser um jogo simples, a implementação do truco em um paradigma orientado a objetos não é de todo simples devido à imensidão de conceitos e definições que o jogo de truco possui. Todavia consideramos o resultado da implementação satisfatório do ponto de vista do aprendizado.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIBLIOGRAFIA
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bibliografia}
-http://www.megajogos.com.br/jogosonline/truco-mineiro/regras
+
+\begin{enumerate}
+    \item Oracle. \emph{Java™ Platform, Standard Edition 7 API Specification}. Mai 2016. \url{https://docs.oracle.com/javase/7/docs/api/}
+    \item MEGAJOGOS. \emph{Como Jogar Truco Mineiro}. Mai 2016. \url{http://www.megajogos.com.br/jogosonline/truco-mineiro/regras}
+\end{enumerate}
 
 \end{document}
